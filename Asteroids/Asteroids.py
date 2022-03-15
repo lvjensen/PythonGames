@@ -72,17 +72,12 @@ class Game(arcade.Window):
     """
 
     def __init__(self, width, height):
-        """
-        Sets up the initial conditions of the game
-        :param width: Screen width
-        :param height: Screen height
-        """
+
         super().__init__(width, height)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
         self.held_keys = set()
 
-        # TODO: declare anything here you need the game class to track
         """
         Create ship class, asteroids list and bullets list to be appended with asteroids and then bullets later on.
         Also, distributes the asteroids so they don't start directly over ship.
@@ -102,15 +97,10 @@ class Game(arcade.Window):
                 i.center.x = random.uniform(500, 800)
 
     def on_draw(self):
-        """
-        Called automatically by the arcade framework.
-        Handles the responsibility of drawing all elements.
-        """
 
         # clear the screen to begin drawing
         arcade.start_render()
 
-        # TODO: draw each object
         """
         Draw ship, asteroids in asteroids list, bullets in bullets list
         Displays messages based on outcome of game
@@ -126,27 +116,23 @@ class Game(arcade.Window):
 
         # Message displayed if ship dies
         if not self.ship.alive:
-            dead_text = 'Wo unto the blind that will not see;\nfor they shall perish also. \n 2 Nephi 9:32'
+            dead_text = 'Wo unto the blind that will not see;\nfor they shall perish also.'
             dead_x = 200
             dead_y = SCREEN_HEIGHT // 2
             arcade.draw_text(dead_text, start_x=dead_x, start_y=dead_y, font_size=20, color=arcade.color.YELLOW)
 
         # Message displayed if game is won
         if not self.asteroids:
-            win_text = 'That whosoever believeth in him\nshould not perish,\nbut have eternal life.\nJohn 3:15'
+            win_text = 'That whosoever believeth in him\nshould not perish,\nbut have eternal life.'
             win_x = 200
             win_y = SCREEN_HEIGHT // 2
             arcade.draw_text(win_text, start_x=win_x, start_y=win_y, font_size=20, color=arcade.color.YELLOW)
 
 
     def update(self, delta_time):
-        """
-        Update each object in the game.
-        :param delta_time: tells us how much time has actually elapsed
-        """
+
         self.check_keys()
 
-        # TODO: Tell everything to advance or move forward one step in time
         """
         advances ship, asteroids in asteroids list, bullets in bullets list
         cleans up dead asteroids and bullets
@@ -292,7 +278,7 @@ class Fly(ABC): #flying objects class
         self.angle += self.turn
 
     @abstractmethod
-    def draw(self): #design later
+    def draw(self):
         pass
 
     def is_off_screen(self, width, height):
@@ -320,7 +306,7 @@ class Fly(ABC): #flying objects class
 
 class Bullet(Fly): #bullet inheriting flying objects
     """
-    has the framework for bullets. The fire functions lets the bllet be fired from the ship in the same angle as the ship.
+    has the framework for bullets. The fire functions lets the bullet be fired from the ship in the same angle as the ship.
     """
 
     def __init__(self):

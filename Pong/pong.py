@@ -32,11 +32,7 @@ class Pong(arcade.Window):
     """
 
     def __init__(self, width, height):
-        """
-        Sets up the initial conditions of the game
-        :param width: Screen width
-        :param height: Screen height
-        """
+
         super().__init__(width, height)
 
         self.ball = Ball()
@@ -96,7 +92,6 @@ class Pong(arcade.Window):
         """
         Checks to see if the ball has hit the paddle
         and if so, calls its bounce method.
-        :return:
         """
         too_close_x = (PADDLE_WIDTH / 2) + BALL_RADIUS
         too_close_y = (PADDLE_HEIGHT / 2) + BALL_RADIUS
@@ -147,8 +142,6 @@ class Pong(arcade.Window):
         """
         Called when a key is pressed. Sets the state of
         holding an arrow key.
-        :param key: The key that was pressed
-        :param key_modifiers: Things like shift, ctrl, etc
         """
         if key == arcade.key.LEFT or key == arcade.key.DOWN:
             self.holding_left = True
@@ -160,8 +153,7 @@ class Pong(arcade.Window):
         """
         Called when a key is released. Sets the state of
         the arrow key as being not held anymore.
-        :param key: The key that was pressed
-        :param key_modifiers: Things like shift, ctrl, etc
+
         """
         if key == arcade.key.LEFT or key == arcade.key.DOWN:
             self.holding_left = False

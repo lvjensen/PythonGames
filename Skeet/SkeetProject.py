@@ -50,8 +50,6 @@ class Game(arcade.Window):
     def __init__(self, width, height):
         """
         Sets up the initial conditions of the game
-        :param width: Screen width
-        :param height: Screen height
         """
         super().__init__(width, height)
 
@@ -60,7 +58,6 @@ class Game(arcade.Window):
 
         self.bullets = []
 
-        # TODO: Create a list for your targets (similar to the above bullets)
         self.targets = []
 
         arcade.set_background_color(arcade.color.WHITE)
@@ -80,8 +77,6 @@ class Game(arcade.Window):
         for bullet in self.bullets:
             bullet.draw()
 
-        # TODO: iterate through your targets and draw them...
-
         for i in self.targets:
             i.draw()
 
@@ -99,7 +94,6 @@ class Game(arcade.Window):
     def update(self, delta_time):
         """
         Update each object in the game.
-        :param delta_time: tells us how much time has actually elapsed
         """
         self.check_collisions()
         self.check_off_screen()
@@ -111,18 +105,14 @@ class Game(arcade.Window):
         for bullet in self.bullets:
             bullet.advance()
 
-        # TODO: Iterate through your targets and tell them to advance
-
         for i in self.targets:
             i.advance()
 
     def create_target(self):
         """
         Creates a new target of a random type and adds it to the list.
-        :return:
         """
 
-        # TODO: Decide what type of target to create and append it to the list
         ran = randint(1,3)
         if ran == 1:
             target = Standard()
@@ -137,10 +127,8 @@ class Game(arcade.Window):
         """
         Checks to see if bullets have hit targets.
         Updates scores and removes dead items.
-        :return:
         """
 
-        # NOTE: This assumes you named your targets list "targets"
 
         for bullet in self.bullets:
             for target in self.targets:
@@ -155,16 +143,12 @@ class Game(arcade.Window):
                         bullet.alive = False
                         self.score += target.hit()
 
-                        # We will wait to remove the dead objects until after we
-                        # finish going through the list
-
         # Now, check for anything that is dead, and remove it
         self.cleanup_zombies()
 
     def cleanup_zombies(self):
         """
         Removes any dead bullets or targets from the list.
-        :return:
         """
         for bullet in self.bullets:
             if not bullet.alive:
